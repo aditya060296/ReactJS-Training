@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DigitalClock</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: #0094eb;
+  }
+
+  .clock-container {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  #greeting {
+    font-size: 4rem;
+	color: white;
+  }
+  #clock {
+    font-size: 7rem;
+	color: white;
+  }
+  #separator {
+    width: 15%;
+	height:15px;
+	color:white;
+	background-color:white;
+  }
+  #date {
+    font-size: 2rem;
+	color: white;
+  }
+</style>
+</head>
+<body>
+<div class="clock-container">
+    <h3 id="greeting"></h3>
+    <hr id="separator"></hr>
+    <h1 id="clock"></h1>
+    <p id="date"></p>
+</div>
+  <script>
+    function displayTime() {
+      var currentTime = new Date();
+      var hours = currentTime.getHours();
+      var minutes = currentTime.getMinutes();
+	  var seconds = currentTime.getSeconds();
+      var ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // Handle midnight (0 hours)
+      minutes = minutes < 10 ? '0' + minutes : minutes; // Add leading zero if minutes are single digit
+	  seconds = seconds< 10 ? '0' + seconds : seconds;
+      var timeString = hours + ':' + minutes +  ':'  + seconds + ' ' + ampm;
+      document.getElementById('clock').innerText = timeString;
+      setTimeout(displayTime, 1000); // Update time every second
+	  
+	  var greeting;
+      if (hours >= 5 && ampm === 'PM') {
+        greeting = 'Good Evening';
+      } else if (hours >= 12 && hours < 17) {
+        greeting = 'Good Afternoon';
+      } else {
+        greeting = 'Good Morning';
+      }
+    document.getElementById('greeting').innerText = greeting;
+	  
+	  var currentDate = new Date();
+      var day = currentDate.getDate();
+      var monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December" ];
+      var month = monthNames[currentDate.getMonth()];
+      var year = currentDate.getFullYear();
+      var date = day + ' ' + month + ' ' + year;
+	  document.getElementById('date').innerText = date;
+    }
+    
+     window.onload = displayTime; // Call displayTime function when the page loads
+	 window.onload = getFormattedDate; // Call getFormattedDate function when the page loads
+	document.getElementById('greeting').innerText = greeting;
+    
+  </script>
+</body>
+</html>

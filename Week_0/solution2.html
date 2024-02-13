@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Array Elements Iterator</title>
+<style>
+  body {
+    font-family: sans-serif;
+    align-items: center;
+	justify-content: center;
+	height: auto;
+	display: flex;
+    margin: 0;
+  }
+
+  #view {
+    font-size: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+    <h3 id="view"></h3>
+</div>
+<script>
+  function printArrayElements() {
+    const myArray = [1,2,3,4,5];
+
+    let iterator = 0;
+    
+    const intervalId = setInterval(() => {
+        if(iterator<myArray.length){
+            document.getElementById('view').innerText = myArray[iterator];
+            iterator++;
+        } else {
+            clearInterval(intervalId);
+        }
+    }, 3000);
+  }
+
+  printArrayElements();
+</script>
+</body>
+</html>
